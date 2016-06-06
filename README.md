@@ -4,8 +4,8 @@ STR - UFPEL (2016/1)
 
 ## Integrantes
 
-Dione Silveira da Silva
-Luan Einhardt (<ldseinhardt@gmail.com>)
+ * Dione Silveira da Silva
+ * Luan Einhardt (<ldseinhardt@gmail.com>)
 
 ## Trabalho
 
