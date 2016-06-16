@@ -23,6 +23,7 @@ public class Pump {
     }
     
     public double getWater() {
+        // verificar falha na bomba
         return status
             ? CAPACITY
             : 0;

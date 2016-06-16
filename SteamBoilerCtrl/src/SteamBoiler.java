@@ -3,7 +3,7 @@ public class SteamBoiler {
     // Nível atual de água
     private double nivel;
     
-    // Limite mínimo de água para operar (???)
+    // Produção de vapor (???)
     private final double STEAM_PER_SECOND = 1;
     
     // Limite mínimo de água para operar

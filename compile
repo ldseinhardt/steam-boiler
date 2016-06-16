@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd SteamBoilerCtrl/src
+
+jamaicac -d ../build/classes/ SteamBoilerCtrl.java
