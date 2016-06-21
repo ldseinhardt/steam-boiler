@@ -1,3 +1,4 @@
+import java.util.Random;
 import javax.realtime.*;
 
 public class SteamBoilerCtrl {
@@ -110,13 +111,27 @@ public class SteamBoilerCtrl {
                 }
             }
         };
-
+        
+        RealtimeThread rt7 = new RealtimeThread(prip, perp1s){
+            public void run(){
+                try{
+                    Random randomVal = new Random();
+                    boolean errorVal = (randomVal.nextBoolean()&&randomVal.nextBoolean())||(randomVal.nextBoolean()&&randomVal.nextBoolean());
+                    if(errorVal){
+                       steamBoilerCtrl.pumps[randomVal.nextInt(steamBoilerCtrl.PUMP_NUMBERS)].setOK(false);
+                    }
+                } catch (Exception e){
+                    
+                }
+            }
+        };
         rt1.start();
         rt2.start();
         rt3.start();
         rt4.start();
         rt5.start();
         rt6.start();
+        rt7.start();
     }
     
     private void pumpsOperate(int n) {
@@ -138,7 +153,13 @@ public class SteamBoilerCtrl {
         System.out.println("[Simulação planta física]: " + steamBoiler.getNivel());
     }
 
-    public void runWaterCtrl() {    
+    public void runWaterCtrl() {
+        int pumpsWorking = 0;
+        for (int i = 0; i < PUMP_NUMBERS; i++) {
+                if(pumps[i].isOK()){
+                        pumpsWorking+=1;
+                }
+        }
         switch (mode) {
             case INITIALIZATION:
                 if (steamBoiler.isNormal()) {
@@ -148,17 +169,37 @@ public class SteamBoilerCtrl {
             case NORMAL:
                 if (steamBoiler.isNormal()) {
                     pumpsOperate(1);
-                } else if (!steamBoiler.isOK()) {
+                } else if (steamBoiler.isFlooding()) {
                     pumpsOperate(0);                        
+                }
+                
+                if(pumpsWorking != PUMP_NUMBERS){
+                    mode = OperationMode.DEGRADED;
                 }
                 break;
             case DEGRADED:
+                if(!steamBoiler.isWorking()){
+                   mode = OperationMode.RESCUE;
+                }else{
+                    if(pumpsWorking == PUMP_NUMBERS){
+                        mode = OperationMode.NORMAL;
+                    }else if(!steamBoiler.isOK()){
+                        mode = OperationMode.EMERGENCY_STOP;
+                    }else{
+                        if (steamBoiler.isNormal()) {
+                            pumpsOperate(1);
+                        } else if (steamBoiler.isFlooding()) {
+                            pumpsOperate(0);                        
+                        }
+                    }
+                }
 
                 break;
             case RESCUE:
 
                 break;
             case EMERGENCY_STOP:
+                System.exit(0);
                 return;
         }
         System.out.println("[Controle de água]: [" + mode + "] - " + steamBoiler.getNivel());
