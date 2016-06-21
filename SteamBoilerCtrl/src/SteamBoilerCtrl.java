@@ -1,3 +1,4 @@
+import java.util.Random;
 import javax.realtime.*;
 
 public class SteamBoilerCtrl {
@@ -110,13 +111,27 @@ public class SteamBoilerCtrl {
                 }
             }
         };
-
+        
+        RealtimeThread rt7 = new RealtimeThread(prip, perp1s){
+            public void run(){
+                try{
+                    Random randomVal = new Random();
+                    boolean errorVal = (randomVal.nextBoolean()&&randomVal.nextBoolean())||(randomVal.nextBoolean()&&randomVal.nextBoolean());
+                    if(errorVal){
+                       steamBoilerCtrl.pumps[randomVal.nextInt(steamBoilerCtrl.PUMP_NUMBERS)].setOK(false);
+                    }
+                } catch (Exception e){
+                    
+                }
+            }
+        };
         rt1.start();
         rt2.start();
         rt3.start();
         rt4.start();
         rt5.start();
         rt6.start();
+        rt7.start();
     }
     
     private void pumpsOperate(int n) {
