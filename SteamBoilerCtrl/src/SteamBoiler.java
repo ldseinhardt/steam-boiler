@@ -1,4 +1,8 @@
+import java.util.Random;
 public class SteamBoiler {
+    
+    //Medidor com ou sem problema
+    private boolean working;
     
     // Nível atual de água
     private double nivel;
@@ -20,6 +24,7 @@ public class SteamBoiler {
     
     public SteamBoiler() {
         nivel = 0;
+        working = true;
     }
     
     public void addWater(double water) {
@@ -36,7 +41,19 @@ public class SteamBoiler {
     }
     
     public double getNivel() {
-        return nivel;
+        if(this.working){
+            return this.nivel;
+        }else{
+            // caso o medidor esteja com problema, é enviado um valor aletorio 
+            //como nivel.
+            Random randomVal = new Random();
+            double errNivel = randomVal.nextDouble()*randomVal.nextInt(10000);
+            return errNivel;
+        }
+    }
+    
+    public void setWorking(boolean status){
+        this.working = status;
     }
     
     public boolean isNormal() {
@@ -46,5 +63,16 @@ public class SteamBoiler {
     public boolean isOK() {
         return nivel >= LIMIT_MIN && nivel <= LIMIT_MAX;
     }
-   
+    
+    public boolean isWorking(){
+        return working;
+    }
+    
+    public boolean isDrying(){
+        return nivel <= NORMAL_LIMIT_MIN;
+    }
+    
+    public boolean isFlooding(){
+        return nivel >=NORMAL_LIMIT_MAX;
+    }
 }

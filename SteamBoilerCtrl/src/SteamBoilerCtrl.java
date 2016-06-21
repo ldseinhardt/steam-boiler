@@ -138,7 +138,13 @@ public class SteamBoilerCtrl {
         System.out.println("[Simulação planta física]: " + steamBoiler.getNivel());
     }
 
-    public void runWaterCtrl() {    
+    public void runWaterCtrl() {
+        int pumpsWorking = 0;
+        for (int i = 0; i < PUMP_NUMBERS; i++) {
+                if(pumps[i].isOK()){
+                        pumpsWorking+=1;
+                }
+        }
         switch (mode) {
             case INITIALIZATION:
                 if (steamBoiler.isNormal()) {
@@ -148,17 +154,37 @@ public class SteamBoilerCtrl {
             case NORMAL:
                 if (steamBoiler.isNormal()) {
                     pumpsOperate(1);
-                } else if (!steamBoiler.isOK()) {
+                } else if (steamBoiler.isFlooding()) {
                     pumpsOperate(0);                        
+                }
+                
+                if(pumpsWorking != PUMP_NUMBERS){
+                    mode = OperationMode.DEGRADED;
                 }
                 break;
             case DEGRADED:
+                if(!steamBoiler.isWorking()){
+                   mode = OperationMode.RESCUE;
+                }else{
+                    if(pumpsWorking == PUMP_NUMBERS){
+                        mode = OperationMode.NORMAL;
+                    }else if(!steamBoiler.isOK()){
+                        mode = OperationMode.EMERGENCY_STOP;
+                    }else{
+                        if (steamBoiler.isNormal()) {
+                            pumpsOperate(1);
+                        } else if (steamBoiler.isFlooding()) {
+                            pumpsOperate(0);                        
+                        }
+                    }
+                }
 
                 break;
             case RESCUE:
 
                 break;
             case EMERGENCY_STOP:
+                System.exit(0);
                 return;
         }
         System.out.println("[Controle de água]: [" + mode + "] - " + steamBoiler.getNivel());
