@@ -1,214 +1,185 @@
-import java.util.Random;
 import javax.realtime.*;
 
-public class SteamBoilerCtrl {
+public class SteamBoilerCtrl
+{
+  // Probabilidade de erros (1%)
+  private static double bug = 0.01;
 
-    private SteamBoiler steamBoiler;
-    
-    private Pump pumps[];
-    
-    private final int PUMP_NUMBERS = 4;
-    
-    private OperationMode mode;
-    
-    public SteamBoilerCtrl() {
-        System.out.println("SteamBoilerCtrl");
-        
-        steamBoiler = new SteamBoiler();
-        
-        pumps = new Pump[PUMP_NUMBERS];
-        
-        for (int i = 0; i < PUMP_NUMBERS; i++) {
-            pumps[i] = new Pump();
-        }        
-        
-        mode = OperationMode.INITIALIZATION;
+  // Capacidade da caldeira em litros
+  private static double boiler_capacity = 200;
+
+  // Capacidade de produção de vapor (constante) em litros/segundo
+  private static double boiler_steam = 1.5;
+
+  // Vazão de cada bomba em litros/segundo
+  private static double pump_waterFlow = 0.75;
+
+  private SteamBoiler steamBoiler;
+
+  public SteamBoilerCtrl()
+  {
+    this.steamBoiler = new SteamBoiler(
+      boiler_capacity,
+      boiler_steam,
+      pump_waterFlow
+    );
+
+    int maxPriority = PriorityScheduler.instance().getMaxPriority();
+
+    PhysicalTask physicalTask = new PhysicalTask(
+      this.steamBoiler,
+      new PriorityParameters(maxPriority),
+      new PeriodicParameters(
+        new RelativeTime(0, 0),
+        new RelativeTime(1000, 0),
+        null,
+        null,
+        null,
+        null
+      )
+    );
+
+    System.out.println(" * inicializando caldeira ...");
+
+    for (Pump pump : this.steamBoiler.getPumps()) {
+      pump.setON();
+      System.out.println(" - bomba (" + pump.getId() + ") ligada.");
     }
-    
-    public static void main(String[] args) {
-        SteamBoilerCtrl steamBoilerCtrl = new SteamBoilerCtrl();
-        
-        int pri = PriorityScheduler.instance().getMinPriority() + 10;
 
-        PriorityParameters prip = new PriorityParameters(pri);
+    System.out.println("");
 
-        RelativeTime period1s = new RelativeTime(1000, 0); //args: ms, ns
+    this.steamBoiler.setON();
+    System.out.println(" - fogo ligado.");
 
-        RelativeTime period5s = new RelativeTime(5000, 0); //args: ms, ns
+    physicalTask.start();
 
-        PeriodicParameters perp1s = new PeriodicParameters(null, period1s, null, null, null, null);
+    PumpScheduleControl pumpScheduleControl = new PumpScheduleControl();
 
-        PeriodicParameters perp5s = new PeriodicParameters(null, period5s, null, null, null, null);
+    MainTaskControl mainTaskControl = new MainTaskControl(
+      this.steamBoiler,
+      pumpScheduleControl,
+      new PriorityParameters(maxPriority - 1),
+      new PeriodicParameters(
+        new RelativeTime(0, 0),
+        new RelativeTime(5000, 0),
+        null,
+        null,
+        null,
+        null
+      )
+    );
 
-        RealtimeThread rt1 = new RealtimeThread(prip, perp1s) {
-            public void run() {
-                try {
-                    while (waitForNextRelease()) {
-                        steamBoilerCtrl.runPhysicalPlant();        
-                    }
-                } catch (Exception e) {
+    System.out.println("");
+    System.out.println(" * inicializando controle principal ...");
+    mainTaskControl.start();
 
-                }
-            }
-        };
-
-        RealtimeThread rt2 = new RealtimeThread(prip, perp5s) {
-            public void run() {
-                try {
-                    while (waitForNextRelease()) {
-                        steamBoilerCtrl.runWaterCtrl();        
-                    }
-                } catch (Exception e) {
-
-                }
-            }
-        };
-
-        RealtimeThread rt3 = new RealtimeThread(prip, perp5s) {
-            public void run() {
-                try {
-                    while (waitForNextRelease()) {
-                        steamBoilerCtrl.pumpCtrl(1);        
-                    }
-                } catch (Exception e) {
-
-                }
-            }
-        };
-
-        RealtimeThread rt4 = new RealtimeThread(prip, perp5s) {
-            public void run() {
-                try {
-                    while (waitForNextRelease()) {
-                        steamBoilerCtrl.pumpCtrl(2);        
-                    }
-                } catch (Exception e) {
-
-                }
-            }
-        };
-
-        RealtimeThread rt5 = new RealtimeThread(prip, perp5s) {
-            public void run() {
-                try {
-                    while (waitForNextRelease()) {
-                        steamBoilerCtrl.pumpCtrl(3);        
-                    }
-                } catch (Exception e) {
-
-                }
-            }
-        };
-
-        RealtimeThread rt6 = new RealtimeThread(prip, perp5s) {
-            public void run() {
-                try {
-                    while (waitForNextRelease()) {
-                        steamBoilerCtrl.pumpCtrl(4);        
-                    }
-                } catch (Exception e) {
-
-                }
-            }
-        };
-        
-        RealtimeThread rt7 = new RealtimeThread(prip, perp1s){
-            public void run(){
-                try{
-                    Random randomVal = new Random();
-                    boolean errorVal = (randomVal.nextBoolean()&&randomVal.nextBoolean())||(randomVal.nextBoolean()&&randomVal.nextBoolean());
-                    if(errorVal){
-                       steamBoilerCtrl.pumps[randomVal.nextInt(steamBoilerCtrl.PUMP_NUMBERS)].setOK(false);
-                    }
-                } catch (Exception e){
-                    
-                }
-            }
-        };
-        rt1.start();
-        rt2.start();
-        rt3.start();
-        rt4.start();
-        rt5.start();
-        rt6.start();
-        rt7.start();
+    PumpTaskControl pumpTaskControls[] = new PumpTaskControl[this.steamBoiler.getNumberOfPumps()];
+    for (Pump pump : this.steamBoiler.getPumps()) {
+      PumpTaskControl pumpTaskControl = pumpTaskControls[pump.getId() - 1];
+      pumpTaskControl = new PumpTaskControl(
+        pump,
+        pumpScheduleControl,
+        new PriorityParameters(maxPriority - 2),
+        new PeriodicParameters(
+          new RelativeTime(0, 0),
+          new RelativeTime(5000, 0),
+          null,
+          null,
+          null,
+          null
+        )
+      );
+      System.out.println("");
+      System.out.println(" * inicializando controle da bomba (" + pump.getId() + ") ...");
+      pumpTaskControl.start();
     }
-    
-    private void pumpsOperate(int n) {
-        for (int i = 0; i < PUMP_NUMBERS; i++) {
-            pumps[i].setOFF();
+
+    FailTask failTask = new FailTask(
+      this.steamBoiler,
+      bug,
+      new PriorityParameters(PriorityScheduler.instance().getMinPriority()),
+      new PeriodicParameters(
+        new RelativeTime(0, 0),
+        new RelativeTime(10000, 0),
+        null,
+        null,
+        null,
+        null
+      )
+    );
+    failTask.start();
+  }
+
+  public static void main(String[] args)
+  {
+    switch (args.length) {
+      case 0:
+        printConfigs(false);
+        break;
+      case 1:
+        if (args[0].toLowerCase().contains("help")) {
+          help();
+        } else {
+          try {
+            bug = Double.parseDouble(args[0]);
+            printConfigs(true);
+          } catch(Exception e) {
+            invalidArgs();
+          }
         }
-        for (int i = 0; i < n; i++) {
-            pumps[i].setON();
+        break;
+      case 4:
+        try {
+          bug = Double.parseDouble(args[0]);
+          boiler_capacity = Double.parseDouble(args[1]);
+          boiler_steam = Double.parseDouble(args[2]);
+          pump_waterFlow = Double.parseDouble(args[3]);
+          printConfigs(true);
+        } catch(Exception e) {
+          invalidArgs();
         }
+        break;
+      default:
+        invalidArgs();
     }
 
-    public void runPhysicalPlant() {
-        for (Pump pump : pumps) {
-            steamBoiler.addWater(pump.getWater());            
-        }
+    SteamBoilerCtrl steamBoilerCtrl = new SteamBoilerCtrl();
+  }
 
-        steamBoiler.producesStem();
+  private static void help()
+  {
+    System.out.println("Ajuda: ");
+    System.out.println("");
+    System.out.println("Passagem de parâmetros possiveis: ");
+    System.out.println("1 ) bug");
+    System.out.println("2 ) bug capacity steam waterFlow");
+    System.out.println("");
+    System.out.println("bug: probabilidade de falhas ocorrerem (double: [0-1]).");
+    System.out.println("capacity: capacidade de água da caldeira em litros (double).");
+    System.out.println("steam: capacidade de produção de vapor da caldeira em litros/segundo (double).");
+    System.out.println("waterFlow: vazão de água de cada bomba em litros/segundo (double).");
+    System.exit(0);
+  }
 
-        System.out.println("[Simulação planta física]: " + steamBoiler.getNivel());
+  private static void invalidArgs()
+  {
+    System.out.println("Parâmetro(s) invalido(s)");
+    System.exit(1);
+  }
+
+  private static void printConfigs(boolean status)
+  {
+    if (status) {
+      System.out.println("SteamBoilerCtrl: configuração custom");
+    } else {
+      System.out.println("SteamBoilerCtrl: configuração padrão");
     }
+    System.out.println(" * Probabilidade de erros: " + bug);
+    System.out.println(" * Capacidade da água da caldeira: " + boiler_capacity + " litros");
+    System.out.println(" * Produção de vapor da caldeira: " + boiler_steam + " litros/segundo");
+    System.out.println(" * Vazão de água das bombas: " + pump_waterFlow + " litros/segundo");
+    System.out.println("");
+    System.out.println("");
+  }
 
-    public void runWaterCtrl() {
-        int pumpsWorking = 0;
-        for (int i = 0; i < PUMP_NUMBERS; i++) {
-                if(pumps[i].isOK()){
-                        pumpsWorking+=1;
-                }
-        }
-        switch (mode) {
-            case INITIALIZATION:
-                if (steamBoiler.isNormal()) {
-                    mode = OperationMode.NORMAL;
-                }
-                break;
-            case NORMAL:
-                if (steamBoiler.isNormal()) {
-                    pumpsOperate(1);
-                } else if (steamBoiler.isFlooding()) {
-                    pumpsOperate(0);                        
-                }
-                
-                if(pumpsWorking != PUMP_NUMBERS){
-                    mode = OperationMode.DEGRADED;
-                }
-                break;
-            case DEGRADED:
-                if(!steamBoiler.isWorking()){
-                   mode = OperationMode.RESCUE;
-                }else{
-                    if(pumpsWorking == PUMP_NUMBERS){
-                        mode = OperationMode.NORMAL;
-                    }else if(!steamBoiler.isOK()){
-                        mode = OperationMode.EMERGENCY_STOP;
-                    }else{
-                        if (steamBoiler.isNormal()) {
-                            pumpsOperate(1);
-                        } else if (steamBoiler.isFlooding()) {
-                            pumpsOperate(0);                        
-                        }
-                    }
-                }
-
-                break;
-            case RESCUE:
-
-                break;
-            case EMERGENCY_STOP:
-                System.exit(0);
-                return;
-        }
-        System.out.println("[Controle de água]: [" + mode + "] - " + steamBoiler.getNivel());
-    }
-
-    public void pumpCtrl(int pump) {
-        System.out.println("[Controle da bomba " + pump + "]");
-        
-        // PARADA DE 5S para inicializar as bombas
-    }
-    
 }

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd SteamBoilerCtrl/build/classes
+cd SteamBoilerCtrl/build
 
-jamaicavm SteamBoilerCtrl
+jamaicavm SteamBoilerCtrl $*
