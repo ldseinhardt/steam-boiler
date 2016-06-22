@@ -7,17 +7,17 @@ public class MainTaskControl extends Task
 
   private PumpScheduleControl pumpScheduleControl;
 
-	public MainTaskControl(PhysicalObject physicalObject,
+  public MainTaskControl(PhysicalObject physicalObject,
     PumpScheduleControl pumpScheduleControl, SchedulingParameters scheduling,
     ReleaseParameters release)
-	{
-		super(physicalObject, scheduling, release);
+  {
+    super(physicalObject, scheduling, release);
     this.steamBoiler = (SteamBoiler) physicalObject;
     this.pumpScheduleControl = pumpScheduleControl;
-	}
+  }
 
-	protected MainTaskControl execute()
-	{
+  protected MainTaskControl execute()
+  {
     // em testes
     switch (this.steamBoiler.getOperationMode()) {
       case INITIALIZATION:
@@ -64,6 +64,6 @@ public class MainTaskControl extends Task
     //System.out.println(" - [Controle principal]: ");
 
     return this;
-	}
+  }
 
 }

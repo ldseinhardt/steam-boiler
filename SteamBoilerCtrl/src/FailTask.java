@@ -12,17 +12,17 @@ public class FailTask extends Task
 
   final private int LIMIT = 1000;
 
-	public FailTask(PhysicalObject physicalObject, double rate,
+  public FailTask(PhysicalObject physicalObject, double rate,
     SchedulingParameters scheduling, ReleaseParameters release)
-	{
-		super(physicalObject, scheduling, release);
+  {
+    super(physicalObject, scheduling, release);
     this.steamBoiler = (SteamBoiler) physicalObject;
     this.rate = LIMIT - (rate * LIMIT);
     this.random = new Random(System.currentTimeMillis());
-	}
+  }
 
-	protected FailTask execute()
-	{
+  protected FailTask execute()
+  {
     int sorted = this.random.nextInt(LIMIT);
 
     if (sorted > rate) {
@@ -63,6 +63,6 @@ public class FailTask extends Task
     }
 
     return this;
-	}
+  }
 
 }

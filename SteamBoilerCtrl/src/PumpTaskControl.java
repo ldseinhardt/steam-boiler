@@ -7,17 +7,17 @@ public class PumpTaskControl extends Task
 
   private PumpScheduleControl pumpScheduleControl;
 
-	public PumpTaskControl(PhysicalObject physicalObject,
+  public PumpTaskControl(PhysicalObject physicalObject,
     PumpScheduleControl pumpScheduleControl, SchedulingParameters scheduling,
     ReleaseParameters release)
-	{
-		super(physicalObject, scheduling, release);
+  {
+    super(physicalObject, scheduling, release);
     this.pump = (Pump) physicalObject;
     this.pumpScheduleControl = pumpScheduleControl;
-	}
+  }
 
-	protected PumpTaskControl execute()
-	{
+  protected PumpTaskControl execute()
+  {
     int id = this.pump.getId();
     if (this.pumpScheduleControl.size() > 0 &&
       this.pumpScheduleControl.element().getId() == id) {
@@ -37,6 +37,6 @@ public class PumpTaskControl extends Task
       System.out.println(" - [Controle da bomba (" + id + ")]: Nada a fazer.");
     }
     return this;
-	}
+  }
 
 }

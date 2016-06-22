@@ -3,28 +3,28 @@ import javax.realtime.*;
 abstract public class Task extends RealtimeThread
 {
 
-	protected PhysicalObject physicalObject;
+  protected PhysicalObject physicalObject;
 
-	public Task()
-	{
-		super();
-	}
+  public Task()
+  {
+    super();
+  }
 
-	public Task(PhysicalObject physicalObject, SchedulingParameters scheduling,
+  public Task(PhysicalObject physicalObject, SchedulingParameters scheduling,
     ReleaseParameters release)
-	{
-		super(scheduling, release);
-		this.physicalObject = physicalObject;
-	}
+  {
+    super(scheduling, release);
+    this.physicalObject = physicalObject;
+  }
 
-	public Task setPhysicalObject(PhysicalObject physicalObject)
-	{
+  public Task setPhysicalObject(PhysicalObject physicalObject)
+  {
     this.physicalObject = physicalObject;
     return this;
-	}
+  }
 
-	public void run()
-	{
+  public void run()
+  {
     try {
       while (waitForNextRelease()) {
         this.execute();
@@ -32,7 +32,7 @@ abstract public class Task extends RealtimeThread
     } catch (Exception e) {
 
     }
-	}
+  }
 
   abstract protected Task execute();
 

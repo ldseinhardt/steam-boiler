@@ -7,16 +7,16 @@ public class PhysicalTask extends Task
 
   private int count;
 
-	public PhysicalTask(PhysicalObject physicalObject,
+  public PhysicalTask(PhysicalObject physicalObject,
     SchedulingParameters scheduling, ReleaseParameters release)
-	{
-		super(physicalObject, scheduling, release);
+  {
+    super(physicalObject, scheduling, release);
     this.steamBoiler = (SteamBoiler) physicalObject;
     this.count = 0;
-	}
+  }
 
-	protected PhysicalTask execute()
-	{
+  protected PhysicalTask execute()
+  {
     for (Pump pump : this.steamBoiler.getPumps()) {
       pump.execute();
 
@@ -53,6 +53,6 @@ public class PhysicalTask extends Task
     this.count++;
 
     return this;
-	}
+  }
 
 }
