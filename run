@@ -2,4 +2,4 @@
 
 cd SteamBoilerCtrl/build
 
-jamaicavm SteamBoilerCtrl $*
+jamaicavm Main $*

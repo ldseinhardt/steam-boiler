@@ -26,22 +26,25 @@ public class FailTask extends Task
     int sorted = this.random.nextInt(LIMIT);
 
     if (sorted > rate) {
+      PhysicalObject physicalObject = null;
       Sensor sensor = null;
-      String sensorName = "";
+      String name = "";
 
       switch (this.random.nextInt(3)) {
         case 0: // sensor de nível de agua
             sensor = steamBoiler.getWaterSensor();
-            sensorName = "Nível de água";
+            name = "Nível de água";
           break;
         case 1: // sensor de vapor
             sensor = steamBoiler.getSteamSensor();
-            sensorName = "Produção de vapor";
+            name = "Produção de vapor";
           break;
         case 2: // sensor de alguma bomba
             int pump = this.random.nextInt(steamBoiler.getNumberOfPumps());
-            sensor = steamBoiler.getPumps()[pump].getFuncionalSensor();
-            sensorName = "Status da bomba " + (pump + 1);
+            //sensor = steamBoiler.getPumps()[pump].getFuncionalSensor();
+            //name = "Status da bomba " + (pump + 1);
+            physicalObject = steamBoiler.getPumps()[pump];
+            name = "Bomba " + (pump + 1);
           break;
       }
 
@@ -49,14 +52,24 @@ public class FailTask extends Task
 
       if (sensor != null) {
         if (sensor.isWorking() == status) {
-          System.out.println(" - [Simulação de falha]: (Sensor: " + sensorName + ") Você acertou seu chute no mesmo local do hardware haha !!!");
+          System.out.println(" - [Simulação de falha]: (Sensor: " + name + ") Você acertou seu chute no mesmo local do hardware haha !!!");
         } else if (status) {
-          System.out.println(" - [Simulação de falha]: (Sensor: " + sensorName + ") Seu chute fez o sensor voltar de funcionar : )");
+          System.out.println(" - [Simulação de falha]: (Sensor: " + name + ") Seu chute fez o sensor voltar de funcionar : )");
         } else {
-          System.out.println(" - [Simulação de falha]: (Sensor: " + sensorName + ") Seu chute fez o sensor parar de funcionar : (");
+          System.out.println(" - [Simulação de falha]: (Sensor: " + name + ") Seu chute fez o sensor parar de funcionar : (");
         }
-
         sensor.setWorking(status);
+      }
+
+      if (physicalObject != null) {
+        if (physicalObject.isWorking() == status) {
+          System.out.println(" - [Simulação de falha]: (Objeto da planta: " + name + ") Você acertou seu chute no mesmo local do hardware haha !!!");
+        } else if (status) {
+          System.out.println(" - [Simulação de falha]: (Objeto da planta: " + name + ") Seu chute fez o objeto voltar de funcionar : )");
+        } else {
+          System.out.println(" - [Simulação de falha]: (Objeto da planta: " + name + ") Seu chute fez o objeto parar de funcionar : (");
+        }
+        physicalObject.setWorking(status);
       }
     } else {
       System.out.println(" - [Simulação de falha]: Você errou seu chute no hardware haha !!!");

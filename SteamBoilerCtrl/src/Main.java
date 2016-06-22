@@ -1,6 +1,6 @@
 import javax.realtime.*;
 
-public class SteamBoilerCtrl
+public class Main
 {
   // Probabilidade de erros (1%)
   private static double bug = 0.01;
@@ -16,7 +16,7 @@ public class SteamBoilerCtrl
 
   private SteamBoiler steamBoiler;
 
-  public SteamBoilerCtrl()
+  public Main()
   {
     this.steamBoiler = new SteamBoiler(
       boiler_capacity,
@@ -143,7 +143,7 @@ public class SteamBoilerCtrl
         invalidArgs();
     }
 
-    SteamBoilerCtrl steamBoilerCtrl = new SteamBoilerCtrl();
+    new Main();
   }
 
   private static void help()

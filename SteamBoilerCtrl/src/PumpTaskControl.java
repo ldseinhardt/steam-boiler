@@ -31,7 +31,7 @@ public class PumpTaskControl extends Task
           this.pump.setOFF();
           System.out.println(" - [Controle da bomba (" + id + ")]: bomba desligada.");
         }
-      }
+      }      
       this.pumpScheduleControl.rem();
     } else {
       System.out.println(" - [Controle da bomba (" + id + ")]: Nada a fazer.");
