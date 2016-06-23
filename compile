@@ -4,4 +4,4 @@ cd SteamBoilerCtrl/src
 
 mkdir -p ../build
 
-jamaicac -d ../build Main.java -Xlint:unchecked
+jamaicac -d ../build steamboilerctrl/Main.java

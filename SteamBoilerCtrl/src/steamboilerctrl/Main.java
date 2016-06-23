@@ -1,12 +1,23 @@
-import javax.realtime.*;
+package steamboilerctrl;
+
+import steamboilerctrl.object.SteamBoiler;
+import steamboilerctrl.object.Pump;
+import steamboilerctrl.task.PhysicalTask;
+import steamboilerctrl.task.MainTaskControl;
+import steamboilerctrl.task.PumpTaskControl;
+import steamboilerctrl.task.FailTask;
+import steamboilerctrl.task.util.PumpScheduleQueue;
+import javax.realtime.PriorityParameters;
+import javax.realtime.PeriodicParameters;
+import javax.realtime.RelativeTime;
 
 public class Main
 {
-  // Probabilidade de erros (1%)
-  private static double bug = 0.01;
+  // Probabilidade de erros (50%)
+  private static double bug = 0.5;
 
   // Capacidade da caldeira em litros
-  private static double boiler_capacity = 200;
+  private static double boiler_capacity = 100;
 
   // Capacidade de produção de vapor (constante) em litros/segundo
   private static double boiler_steam = 1.5;
@@ -24,13 +35,11 @@ public class Main
       pump_waterFlow
     );
 
-    int maxPriority = PriorityScheduler.instance().getMaxPriority();
-
     PhysicalTask physicalTask = new PhysicalTask(
       this.steamBoiler,
-      new PriorityParameters(maxPriority),
+      new PriorityParameters(1),
       new PeriodicParameters(
-        new RelativeTime(0, 0),
+        null,
         new RelativeTime(1000, 0),
         null,
         null,
@@ -53,14 +62,14 @@ public class Main
 
     physicalTask.start();
 
-    PumpScheduleControl pumpScheduleControl = new PumpScheduleControl();
+    PumpScheduleQueue pumpScheduleQueue = new PumpScheduleQueue();
 
     MainTaskControl mainTaskControl = new MainTaskControl(
       this.steamBoiler,
-      pumpScheduleControl,
-      new PriorityParameters(maxPriority - 1),
+      pumpScheduleQueue,
+      new PriorityParameters(2),
       new PeriodicParameters(
-        new RelativeTime(0, 0),
+        null,
         new RelativeTime(5000, 0),
         null,
         null,
@@ -78,10 +87,10 @@ public class Main
       PumpTaskControl pumpTaskControl = pumpTaskControls[pump.getId() - 1];
       pumpTaskControl = new PumpTaskControl(
         pump,
-        pumpScheduleControl,
-        new PriorityParameters(maxPriority - 2),
+        pumpScheduleQueue,
+        new PriorityParameters(3),
         new PeriodicParameters(
-          new RelativeTime(0, 0),
+          null,
           new RelativeTime(5000, 0),
           null,
           null,
@@ -97,9 +106,9 @@ public class Main
     FailTask failTask = new FailTask(
       this.steamBoiler,
       bug,
-      new PriorityParameters(PriorityScheduler.instance().getMinPriority()),
+      new PriorityParameters(4),
       new PeriodicParameters(
-        new RelativeTime(0, 0),
+        null,
         new RelativeTime(10000, 0),
         null,
         null,
@@ -142,7 +151,6 @@ public class Main
       default:
         invalidArgs();
     }
-
     new Main();
   }
 

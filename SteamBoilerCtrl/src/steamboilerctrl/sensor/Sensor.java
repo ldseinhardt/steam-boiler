@@ -1,13 +1,18 @@
+package steamboilerctrl.sensor;
+
+import steamboilerctrl.object.PhysicalObject;
 import java.util.Random;
 
 abstract public class Sensor<T>
 {
 
+  // objeto físico que o sensor realiza medições
   protected PhysicalObject physicalObject;
 
   // Sensor funcionando corretamente
   protected boolean working;
 
+  // gerador de valores alatórios (simulação de falhas)
   protected Random random;
 
   public Sensor(PhysicalObject physicalObject)
@@ -17,10 +22,9 @@ abstract public class Sensor<T>
     this.random = new Random(System.currentTimeMillis());
   }
 
-  public Sensor setWorking(boolean status)
+  public void setWorking(boolean status)
   {
     this.working = status;
-    return this;
   }
 
   public boolean isWorking()
@@ -32,7 +36,8 @@ abstract public class Sensor<T>
 
   abstract protected T getRealValue();
 
-  public T getValue() {
+  public T getValue()
+  {
     // caso o sensor esteja com problema, é retornado um valor aletorio
     return this.working
       ? this.getRealValue()

@@ -1,3 +1,6 @@
+package steamboilerctrl.sensor;
+
+import steamboilerctrl.object.SteamBoiler;
 import java.util.Random;
 
 public class SteamSensor extends Sensor<Double>
@@ -13,7 +16,7 @@ public class SteamSensor extends Sensor<Double>
     return this.random.nextDouble();
   }
 
-  public Double getRealValue()
+  protected Double getRealValue()
   {
     return ((SteamBoiler) physicalObject).getSteam();
   }

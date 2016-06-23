@@ -1,3 +1,6 @@
+package steamboilerctrl.sensor;
+
+import steamboilerctrl.object.SteamBoiler;
 import java.util.Random;
 
 public class WaterSensor extends Sensor<Double>
@@ -13,7 +16,7 @@ public class WaterSensor extends Sensor<Double>
     return this.random.nextDouble();
   }
 
-  public Double getRealValue()
+  protected Double getRealValue()
   {
     return ((SteamBoiler) physicalObject).getNivel();
   }

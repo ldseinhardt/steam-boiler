@@ -1,26 +1,26 @@
-public class PumpScheduleControlItem
+package steamboilerctrl.task.util;
+
+public class PumpScheduleMessage
 {
 
   private int id;
 
   private boolean status;
 
-  public PumpScheduleControlItem(int id, boolean status)
+  public PumpScheduleMessage(int id, boolean status)
   {
     this.id = id;
     this.status = status;
   }
 
-  public PumpScheduleControlItem setId(int id)
+  public void setId(int id)
   {
     this.id = id;
-    return this;
   }
 
-  public PumpScheduleControlItem setStatus(boolean status)
+  public void setStatus(boolean status)
   {
     this.status = status;
-    return this;
   }
 
   public int getId()

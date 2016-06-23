@@ -1,3 +1,5 @@
+package steamboilerctrl.object;
+
 abstract public class PhysicalObject
 {
 
@@ -19,23 +21,30 @@ abstract public class PhysicalObject
     this.working = true;
   }
 
-  public PhysicalObject setON()
+  public void setON()
   {
     this.status = true;
-    return this;
   }
 
-  public PhysicalObject setOFF()
+  public void setOFF()
   {
     this.status = false;
-    return this;
   }
 
-  public PhysicalObject setWorking(boolean status)
+  public void setWorking(boolean status)
   {
     this.working = status;
-    return this;
   }
+
+  public void execute()
+  {
+    // caso o sensor esteja com problema, nada é executado
+    if (this.status && this.working) {
+      this.action();
+    }
+  }
+
+  abstract protected void action();
 
   public boolean getStatus()
   {
@@ -45,16 +54,6 @@ abstract public class PhysicalObject
   public boolean isWorking()
   {
     return this.working;
-  }
-
-  abstract protected PhysicalObject action();
-
-  public PhysicalObject execute() {
-    // caso o sensor esteja com problema, nada é executado
-    return this.status && this.working
-      ? this.action()
-      : this
-      ;
   }
 
 }

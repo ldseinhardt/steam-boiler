@@ -1,3 +1,5 @@
+package steamboilerctrl.object.util;
+
 public enum PumpOperationMode
 {
 

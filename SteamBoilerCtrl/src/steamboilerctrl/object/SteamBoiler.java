@@ -1,3 +1,9 @@
+package steamboilerctrl.object;
+
+import steamboilerctrl.object.util.BoilerOperationMode;
+import steamboilerctrl.sensor.WaterSensor;
+import steamboilerctrl.sensor.SteamSensor;
+
 public class SteamBoiler extends PhysicalObject
 {
 
@@ -19,22 +25,26 @@ public class SteamBoiler extends PhysicalObject
   final private double INDEX_LIMIT_NORMAL_MIN = 0.20;
   final private double INDEX_LIMIT_MIN = 0.10;
 
+  // número de bombas
   final private int PUMP_NUMBERS = 4;
 
+  // bombas
   private Pump pumps[];
 
-  // Sensores
+  // Sensor de vapor
   private SteamSensor steamSensor;
+
+  // Sensor do nível de água
   private WaterSensor waterSensor;
 
   public SteamBoiler()
   {
     super();
     mode = BoilerOperationMode.INITIALIZATION;
-    // Padrão 200,00 L
-    this.capacity = 200;
+    // Padrão em litros
+    this.capacity = 100;
     this.nivel = 0;
-    // Padrão 1,5 L/S
+    // Padrão em litros/segundo
     this.steam = 1.5;
 
     this.pumps = new Pump[PUMP_NUMBERS];
@@ -60,48 +70,44 @@ public class SteamBoiler extends PhysicalObject
     for (int i = 0; i < PUMP_NUMBERS; i++) {
       pumps[i] = new Pump(this, i + 1, waterFlow);
     }
+
+    this.steamSensor = new SteamSensor(this);
+    this.waterSensor = new WaterSensor(this);
   }
 
-  public SteamBoiler setOperationMode(BoilerOperationMode mode)
+  public void setOperationMode(BoilerOperationMode mode)
   {
     this.mode = mode;
-    return this;
   }
 
-  public SteamBoiler setCapacity(double capacity)
+  public void setCapacity(double capacity)
   {
     this.capacity = capacity;
-    return this;
   }
 
-  public SteamBoiler setSteam(double steam)
+  public void setSteam(double steam)
   {
     this.steam = steam;
-    return this;
   }
 
-  public SteamBoiler setNivel(double nivel)
+  public void setNivel(double nivel)
   {
     this.nivel = nivel;
-    return this;
   }
 
-  public SteamBoiler addWater(double water)
+  public void addWater(double water)
   {
     this.nivel += water;
-    return this;
   }
 
-  public SteamBoiler producesStem()
+  public void producesStem()
   {
     this.nivel -= this.steam;
-    return this;
   }
 
-  protected SteamBoiler action()
+  protected void action()
   {
     this.producesStem();
-    return this;
   }
 
   public BoilerOperationMode getOperationMode()

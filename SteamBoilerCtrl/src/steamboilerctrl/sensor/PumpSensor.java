@@ -1,3 +1,6 @@
+package steamboilerctrl.sensor;
+
+import steamboilerctrl.object.Pump;
 import java.util.Random;
 
 public class PumpSensor extends Sensor<Boolean>
@@ -13,9 +16,9 @@ public class PumpSensor extends Sensor<Boolean>
     return this.random.nextBoolean();
   }
 
-  public Boolean getRealValue()
+  protected Boolean getRealValue()
   {
-    return physicalObject.getStatus();
+    return physicalObject.isWorking();
   }
 
 }
