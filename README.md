@@ -33,7 +33,7 @@ Controlar a quantidade de agua na caldeira
 
 1. Recepção de mensagens das unidades físicas
 2. Análise das informações recebidas
-3 Transmissão dos comandos para unidades físicas
+3. Transmissão dos comandos para unidades físicas
 
 #### Modos de operação (5)
 
@@ -61,7 +61,7 @@ Controlar a quantidade de agua na caldeira
 * O nível de água na caldeira em litros
 
 #### Monitor para o vapor que sai da caldeira
-	
+
 * A quantidade de vapor em (litros/sec)
 
 #### Bomba

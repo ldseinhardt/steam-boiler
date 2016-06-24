@@ -6,7 +6,8 @@ public enum BoilerOperationMode
   INITIALIZATION (0),
   NORMAL         (1),
   DEGRADED       (2),
-  EMERGENCY_STOP (3);
+  RESCUE         (3),
+  EMERGENCY_STOP (4);
 
   final private int mode;
 

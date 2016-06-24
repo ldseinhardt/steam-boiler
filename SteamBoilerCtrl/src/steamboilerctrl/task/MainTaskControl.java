@@ -37,6 +37,12 @@ public class MainTaskControl extends Task
   // nível de água atual
   private double nivel;
 
+  // última medição do nível de água
+  private double old;
+
+  // última diferença no nível de água
+  private double olddif;
+
   public MainTaskControl(PhysicalObject physicalObject,
     PumpScheduleQueue pumpScheduleQueue, SchedulingParameters scheduling,
     ReleaseParameters release)
@@ -50,115 +56,213 @@ public class MainTaskControl extends Task
     this.steamProduce = this.steamBoiler.getSteam();
     this.waterFlow = this.steamBoiler.getPumps()[0].getWaterFlow();
     this.nivel = 0;
+    this.old = 0;
+    this.olddif = 0;
 
     // Não exibe mensagens de log da tarefa
     //this.setLog(false);
   }
 
+  private void waterMeasureControl()
+  {
+    // !!! Medição real
+    //this.nivel = (double) this.steamBoiler.getNivel();
+
+    //*
+    this.old = this.nivel;
+    this.nivel = (double) this.waterSensor.getValue();
+
+    this.log("     * Medição de água: " + this.old + " -> " + this.nivel);
+
+    double max = ((this.waterFlow * this.numberOfPumps) - (this.steamProduce)) * 5;
+
+    if (this.old != 0 && (this.nivel > this.old + max || this.nivel < this.old - max)) {
+      this.log("     * Correção na medição de água: " + this.nivel + " -> " + this.old);
+      this.nivel = this.old + this.olddif;
+      if (this.steamBoiler.getOperationMode() != BoilerOperationMode.RESCUE && this.steamBoiler.getOperationMode() != BoilerOperationMode.EMERGENCY_STOP) {
+        this.log("     * passando do modo " + this.steamBoiler.getOperationMode() + " para o modo RESCUE.");
+        this.steamBoiler.setOperationMode(BoilerOperationMode.RESCUE);
+      }
+    } else {
+      this.olddif = this.nivel - this.old;
+      if (this.steamBoiler.getOperationMode() == BoilerOperationMode.RESCUE) {
+        this.log("     * passando do modo RESCUE para o modo DEGRADED.");
+        this.steamBoiler.setOperationMode(BoilerOperationMode.DEGRADED);
+      }
+    }
+    //*/
+  }
+
+  private void steamControl()
+  {
+    if (this.steamProduce != this.steamSensor.getValue()) {
+      this.log("     * risco de explosão, passando do modo " + this.steamBoiler.getOperationMode() + " para o modo EMERGENCY_STOP.");
+      this.steamBoiler.setOperationMode(BoilerOperationMode.EMERGENCY_STOP);
+    }
+  }
+
+  private void pumpsControl()
+  {
+    int problem = this.countPumpsON() - this.countPumpsEnabled();
+    if (problem == 0) {
+      if(this.steamBoiler.getOperationMode() == BoilerOperationMode.DEGRADED) {
+        this.log("     * bomba(s) com falha(s): " + problem + ", passando do modo DEGRADED para o modo NORMAL.");
+        this.steamBoiler.setOperationMode(BoilerOperationMode.NORMAL);
+      }
+    } else if(this.steamBoiler.getOperationMode() != BoilerOperationMode.RESCUE && this.steamBoiler.getOperationMode() != BoilerOperationMode.DEGRADED) {
+      this.log("     * bomba(s) com falha(s): " + problem + ", passando do modo " + this.steamBoiler.getOperationMode() + " para o modo DEGRADED.");
+      this.steamBoiler.setOperationMode(BoilerOperationMode.DEGRADED);
+    }
+  }
+
   protected void execute()
   {
-    this.log("");
-    this.log(" - [Controle principal]:");
-    /*
-    double old = this.nivel;
-    this.nivel = (double) this.steamBoiler.getWaterSensor().getValue();
+    this.log("\n - [Controle principal]:");
 
-    if (this.nivel >= (old + (this.countPumpsON() * this.waterFlow * 5))) {
-      System.out.println(" * Correção Sensor: " + this.nivel + " para " + old);
-      this.nivel = old;
-    }
-    if (this.nivel <= (old + (this.countPumpsON() * this.waterFlow * 5))) {
-      System.out.println(" * Correção Sensor: " + this.nivel + " para " + old);
-      this.nivel = old;
-    }
-
-    System.out.println("+++++++++++++++++++++" + this.nivel);
-*/
-    this.nivel = (double) this.steamBoiler.getNivel();
+    this.waterMeasureControl();
 
     switch (this.steamBoiler.getOperationMode()) {
       case INITIALIZATION:
-        if (this.nivel >= this.steamBoiler.getNormalLimitMin()) {
-          this.pumpScheduleQueue.add(1, true);
-          this.pumpScheduleQueue.add(2, true);
-          this.pumpScheduleQueue.add(3, true);
-          this.pumpScheduleQueue.add(4, false);
-          this.steamBoiler.setOperationMode(BoilerOperationMode.NORMAL);
-          this.log("     * passando do modo de inicialização para o modo normal.");
-        } else {
-          this.log("     * continua no modo de inicialização.");
-        }
+          this.steamControl();
+          this.pumpsControl();
+          if (this.nivel >= this.steamBoiler.getNormalLimitMin()) {
+            this.log("     * passando do modo de INITIALIZATION para o modo NORMAL.");
+            this.steamBoiler.setOperationMode(BoilerOperationMode.NORMAL);
+          } else {
+            this.log("     * continuar no modo INITIALIZATION.");
+          }
         break;
       case NORMAL:
-        if (this.nivel < this.steamBoiler.getNormalLimitMin()) {
-          // abaixo
-          this.pumpScheduleQueue.add(1, true);
-          this.pumpScheduleQueue.add(2, true);
-          this.pumpScheduleQueue.add(3, true);
-          this.pumpScheduleQueue.add(4, true);
-          this.log("     * modo normal [abaixo] (operar com todas as bombas).");
-        } else if (this.nivel > this.steamBoiler.getNormalLimitMax()) {
-          // acima
-          this.pumpScheduleQueue.add(1, true);
-          this.pumpScheduleQueue.add(2, false);
-          this.pumpScheduleQueue.add(3, false);
-          this.pumpScheduleQueue.add(4, false);
-          this.log("     * modo normal [acima] (operar com uma bomba).");
-        } else {
-          // normal
-          this.pumpScheduleQueue.add(1, true);
-          this.pumpScheduleQueue.add(2, true);
-          this.pumpScheduleQueue.add(3, true);
-          this.pumpScheduleQueue.add(4, false);
-          this.log("     * modo normal [normal] (operar com 3 as bombas).");
-        }
-        if (this.countPumpsON() != this.countPumpsEnabled()) {
-          this.steamBoiler.setOperationMode(BoilerOperationMode.DEGRADED);
-          this.log("     * passando do modo normal para degradado.");
-        }
+          this.steamControl();
+          this.pumpsControl();
+          if (this.nivel < this.steamBoiler.getNormalLimitMin()) {
+            // abaixo
+            this.pumpsSchedule(1);
+            this.log("     * continuar no modo NORMAL (abaixo) (operar com todoas as bombas).");
+          } else if (this.nivel > this.steamBoiler.getNormalLimitMax()) {
+            // acima
+            this.pumpsSchedule(-1);
+            this.log("     * continuar no modo NORMAL (acima) (operar com nenhuma bomba).");
+          } else {
+            // normal
+            this.pumpsSchedule(0);
+            this.log("     * continuar no modo NORMAL (manter nível) (operar com as bombas necessárias).");
+          }
         break;
       case DEGRADED:
-        if (this.countAllPumpsProblem() == this.numberOfPumps) {
-          this.steamBoiler.setOperationMode(BoilerOperationMode.EMERGENCY_STOP);
-          this.log("     * passando do modo degradado para o modo de emergência.");
-        } else if (this.countAllPumpsProblem() == 0) {
-          this.steamBoiler.setOperationMode(BoilerOperationMode.NORMAL);
-          this.log("     * passando do modo degradado para o modo normal.");
-        }
-        if (this.nivel <= this.steamBoiler.getLimitMin()) {
-          this.log("     * passando do modo degradado para o modo de emergência.");
-        } else if (this.nivel >= this.steamBoiler.getLimitMax()) {
-          this.log("     * passando do modo degradado para o modo de emergência.");
-        } else {
-          if (this.nivel < this.steamBoiler.getNormalLimitMin()) {
-            this.pumpScheduleQueue.add(1, true);
-            this.pumpScheduleQueue.add(2, true);
-            this.pumpScheduleQueue.add(3, true);
-            this.pumpScheduleQueue.add(4, true);
-          } if (this.nivel > this.steamBoiler.getNormalLimitMax()) {
-            this.pumpScheduleQueue.add(1, true);
-            this.pumpScheduleQueue.add(2, true);
-            this.pumpScheduleQueue.add(3, false);
-            this.pumpScheduleQueue.add(4, false);
+          this.steamControl();
+          this.pumpsControl();
+          if (this.nivel <= this.steamBoiler.getLimitMin()) {
+            this.log("     * passando do modo DEGRADED para o modo de EMERGENCY_STOP.");
+            this.steamBoiler.setOperationMode(BoilerOperationMode.EMERGENCY_STOP);
+          } else if (this.nivel >= this.steamBoiler.getLimitMax()) {
+            this.log("     * passando do modo DEGRADED para o modo de EMERGENCY_STOP.");
+            this.steamBoiler.setOperationMode(BoilerOperationMode.EMERGENCY_STOP);
+          } else if (this.nivel < this.steamBoiler.getNormalLimitMin()) {
+            // abaixo
+            this.pumpsSchedule(1);
+            this.log("     * continuar no modo DEGRADED (abaixo) (operar com todoas as bombas).");
+          } else if (this.nivel > this.steamBoiler.getNormalLimitMax()) {
+            // acima
+            this.pumpsSchedule(-1);
+            this.log("     * continuar no modo DEGRADED (acima) (operar com nenhuma bomba).");
           } else {
-            this.pumpScheduleQueue.add(1, true);
-            this.pumpScheduleQueue.add(2, true);
-            this.pumpScheduleQueue.add(3, true);
-            this.pumpScheduleQueue.add(4, false);
+            // normal
+            this.pumpsSchedule(0);
+            this.log("     * continuar no modo DEGRADED (manter nível) (operar com as bombas necessárias).");
           }
-        }
         break;
+      //*
+        case RESCUE:
+            this.steamControl();
+            this.pumpsControl();
+            if (this.nivel <= this.steamBoiler.getLimitMin()) {
+              this.log("     * passando do modo RESCUE para o modo de EMERGENCY_STOP.");
+              this.steamBoiler.setOperationMode(BoilerOperationMode.EMERGENCY_STOP);
+            } else if (this.nivel >= this.steamBoiler.getLimitMax()) {
+              this.log("     * passando do modo RESCUE para o modo de EMERGENCY_STOP.");
+              this.steamBoiler.setOperationMode(BoilerOperationMode.EMERGENCY_STOP);
+            } else if (this.nivel < this.steamBoiler.getNormalLimitMin()) {
+              // abaixo
+              this.pumpsSchedule(1);
+              this.log("     * continuar no modo RESCUE (abaixo) (operar com todoas as bombas).");
+            } else if (this.nivel > this.steamBoiler.getNormalLimitMax()) {
+              // acima
+              this.pumpsSchedule(-1);
+              this.log("     * continuar no modo RESCUE (acima) (operar com nenhuma bomba).");
+            } else {
+              // normal
+              this.pumpsSchedule(0);
+              this.log("     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).");
+            }
+        break;
+      //*/
       case EMERGENCY_STOP:
-        this.log("     * parada de emergência.");
-        this.steamBoiler.setOFF();
-        this.pumpScheduleQueue.add(1, false);
-        this.pumpScheduleQueue.add(2, false);
-        this.pumpScheduleQueue.add(3, false);
-        this.pumpScheduleQueue.add(4, false);
-        this.log("     * caldeira desligada.");
-        System.exit(1);
+          this.log("     * parada de emergência.\n     * caldeira desligada.\n     * bombas desligadas.");
+          this.steamBoiler.setOFF();
+          for (int i = 0; i < this.numberOfPumps; i++) {
+            this.steamBoiler.getPumps()[i].setOFF();
+          }
+          System.exit(1);
         break;
     }
+  }
+
+  // -1 = nenhuma bomba
+  //  0 =  bombas necessárias
+  //  1 = todas as bombas
+  private void pumpsSchedule(int status)
+  {
+    int diff = this.pumpsScheduleNumber(status) - this.countPumpsEnabled();
+
+    /*
+    for (int i = 0; i < this.numberOfPumps; i++) {
+      if (!this.steamBoiler.getPumps()[i].getFuncionalSensor().getValue()) {
+        this.pumpScheduleQueue.add(i +1, false);
+      }
+    }
+    */
+
+    if (diff > 0) { //+
+      for (int i = 0; i < this.numberOfPumps; i++) {
+        if (diff <= 0) {
+          break;
+        }
+        if (this.steamBoiler.getPumps()[i].getStatus()) {
+          continue;
+        } else if (this.steamBoiler.getPumps()[i].getFuncionalSensor().getValue()) {
+          this.pumpScheduleQueue.add(i + 1, true);
+          diff--;
+        }
+      }
+    } else if (diff < 0) { //-
+      diff = this.numberOfPumps - Math.abs(diff);
+      for (int i = 0; i < this.numberOfPumps; i++) {
+        if (diff > 0 && this.steamBoiler.getPumps()[i].getStatus() && this.steamBoiler.getPumps()[i].getFuncionalSensor().getValue()) {
+          diff--;
+          continue;
+        }
+        this.pumpScheduleQueue.add(i + 1, false);
+      }
+    }
+  }
+
+  private int pumpsScheduleNumber(int status)
+  {
+    if (status < 0) {
+      return 0;
+    } else if (status > 0) {
+      return this.numberOfPumps;
+    }
+    int n = 1;
+    for (int i = 0; i < this.numberOfPumps; i++) {
+      if ((this.waterFlow * n) < this.steamProduce) {
+        n++;
+      } else {
+        break;
+      }
+    }
+    return n;
   }
 
   private int countPumpsEnabled()
@@ -188,17 +292,6 @@ public class MainTaskControl extends Task
     int i = 0;
     for (Pump pump : this.steamBoiler.getPumps()) {
       if (pump.getStatus()) {
-        i++;
-      }
-    }
-    return i;
-  }
-
-  private int countPumpsOFF()
-  {
-    int i = 0;
-    for (Pump pump : this.steamBoiler.getPumps()) {
-      if (!pump.getStatus()) {
         i++;
       }
     }

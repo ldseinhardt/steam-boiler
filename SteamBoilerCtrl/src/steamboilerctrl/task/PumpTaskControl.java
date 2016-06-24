@@ -38,9 +38,6 @@ public class PumpTaskControl extends Task
 
   protected void execute()
   {
-    this.log("");
-    this.log(" - [Controle da bomba " + this.id + "]:");
-
     String description = "";
     if (this.pump.getOperationMode() == PumpOperationMode.STOPPED) {
       description += "parada/";
@@ -58,19 +55,19 @@ public class PumpTaskControl extends Task
     // verifica se tem solicitação para ligar/desligar alguma bomba
     if (this.pumpScheduleQueue.size() > 0 && this.pumpScheduleQueue.element().getId() == this.id) {
       if (this.pumpScheduleQueue.element().getStatus() == this.pump.getStatus()) {
-        this.log("     * " + description + ".");
+        this.log("\n - [Controle da bomba" + this.id + "]:\n     * " + description + ".");
       } else {
         if (this.pumpScheduleQueue.element().getStatus()) {
           this.pump.setON();
-          this.log("     * inicializada ...");
+          this.log("\n - [Controle da bomba" + this.id + "]:\n     * inicializada ...");
         } else {
           this.pump.setOFF();
-          this.log("     * desligada.");
+          this.log("\n - [Controle da bomba" + this.id + "]:\n     * desligada.");
         }
       }
       this.pumpScheduleQueue.remove();
     } else {
-      this.log("     * " + description + ".");
+      this.log("\n - [Controle da bomba" + this.id + "]:\n     * " + description + ".");
     }
   }
 

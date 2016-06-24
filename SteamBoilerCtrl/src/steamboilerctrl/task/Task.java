@@ -39,7 +39,7 @@ abstract public class Task extends RealtimeThread
         this.execute();
       }
     } catch (Exception e) {
-
+      System.out.println(" *** Problema *** - Tarefa: " + this.getClass().getSimpleName());
     }
   }
 

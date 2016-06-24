@@ -1,7 +1,6 @@
 package steamboilerctrl.task.util;
 
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.*;
 
 public class PumpScheduleQueue
 {

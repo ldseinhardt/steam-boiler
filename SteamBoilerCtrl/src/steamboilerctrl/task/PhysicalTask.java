@@ -30,8 +30,7 @@ public class PhysicalTask extends Task
 
   protected void execute()
   {
-    this.log("");
-    this.log(" - [Planta física]:");
+    this.log("\n - [Planta física]:");
 
     for (Pump pump : this.steamBoiler.getPumps()) {
       pump.execute();

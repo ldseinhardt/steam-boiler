@@ -13,8 +13,8 @@ import javax.realtime.RelativeTime;
 
 public class Main
 {
-  // Probabilidade de erros (50%)
-  private static double bug = 0.5;
+  // Probabilidade de erros (70%)
+  private static double bug = 0.7;
 
   // Capacidade da caldeira em litros
   private static double boiler_capacity = 100;
@@ -52,7 +52,7 @@ public class Main
 
     for (Pump pump : this.steamBoiler.getPumps()) {
       pump.setON();
-      System.out.println(" - bomba (" + pump.getId() + ") ligada.");
+      System.out.println(" - bomba" + pump.getId() + " ligada.");
     }
 
     System.out.println("");
@@ -99,7 +99,7 @@ public class Main
         )
       );
       System.out.println("");
-      System.out.println(" * inicializando controle da bomba (" + pump.getId() + ") ...");
+      System.out.println(" * inicializando controle da bomba" + pump.getId() + " ...");
       pumpTaskControl.start();
     }
 

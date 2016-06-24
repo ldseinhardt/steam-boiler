@@ -36,8 +36,7 @@ public class FailTask extends Task
 
   protected void execute()
   {
-    this.log("");
-    this.log(" - [Simulação de falha]:");
+    this.log("\n - [Simulação de falha]:");
 
     // sorteia um número
     int sorted = this.random.nextInt(LIMIT);
