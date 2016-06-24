@@ -108,7 +108,7 @@ public class Main
     FailTask failTask = new FailTask(
       this.steamBoiler,
       bug,
-      new PriorityParameters(i),
+      new PriorityParameters(3 + i),
       new PeriodicParameters(
         null,
         new RelativeTime(10000, 0),
