@@ -68,7 +68,6 @@ public class MainTaskControl extends Task
     // !!! Medição real
     //this.nivel = (double) this.steamBoiler.getNivel();
 
-    //*
     this.old = this.nivel;
     this.nivel = (double) this.waterSensor.getValue();
 
@@ -90,7 +89,6 @@ public class MainTaskControl extends Task
         this.steamBoiler.setOperationMode(BoilerOperationMode.DEGRADED);
       }
     }
-    //*/
   }
 
   private void steamControl()
@@ -172,7 +170,6 @@ public class MainTaskControl extends Task
             this.log("     * continuar no modo DEGRADED (manter nível) (operar com as bombas necessárias).");
           }
         break;
-      //*
         case RESCUE:
             this.steamControl();
             this.pumpsControl();
@@ -196,7 +193,6 @@ public class MainTaskControl extends Task
               this.log("     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).");
             }
         break;
-      //*/
       case EMERGENCY_STOP:
           this.log("     * parada de emergência.\n     * caldeira desligada.\n     * bombas desligadas.");
           this.steamBoiler.setOFF();
@@ -214,7 +210,8 @@ public class MainTaskControl extends Task
   private void pumpsSchedule(int status)
   {
     int diff = this.pumpsScheduleNumber(status) - this.countPumpsEnabled();
-
+    this.log(this.pumpsScheduleNumber(status) + "-" + this.countPumpsEnabled() + "=" + diff);
+    //0 - 2 = -2
     /*
     for (int i = 0; i < this.numberOfPumps; i++) {
       if (!this.steamBoiler.getPumps()[i].getFuncionalSensor().getValue()) {
@@ -238,11 +235,10 @@ public class MainTaskControl extends Task
     } else if (diff < 0) { //-
       diff = this.numberOfPumps - Math.abs(diff);
       for (int i = 0; i < this.numberOfPumps; i++) {
-        if (diff > 0 && this.steamBoiler.getPumps()[i].getStatus() && this.steamBoiler.getPumps()[i].getFuncionalSensor().getValue()) {
+        if (diff > 0 && this.steamBoiler.getPumps()[i].getStatus()) {
           diff--;
-          continue;
+          this.pumpScheduleQueue.add(i + 1, false);
         }
-        this.pumpScheduleQueue.add(i + 1, false);
       }
     }
   }

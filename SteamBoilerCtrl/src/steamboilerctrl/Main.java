@@ -20,7 +20,7 @@ public class Main
   private static double boiler_capacity = 100;
 
   // Capacidade de produção de vapor (constante) em litros/segundo
-  private static double boiler_steam = 1.5;
+  private static double boiler_steam = 1.1;
 
   // Vazão de cada bomba em litros/segundo
   private static double pump_waterFlow = 0.75;

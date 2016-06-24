@@ -9,6 +9,29 @@ STR - UFPEL (2016/1)
 
 ## Trabalho
 
+### Para compilar
+
+```
+$ ./compile
+```
+
+### Para executar
+
+Recomenda-se fortemente executar como root para que as threads não sejam executadas como threads normais do sistema.
+
+```
+# ./run
+# ./run help (exibe os parâmetros possíveis)
+```
+
+#### Problemas?
+
+Caso os scripts bash para compilar não executem, adicione permissão de execução aos mesmos.
+
+```
+# chmod +x compile run
+```
+
 ### Tarefas
 
 | #  | Nome                       | Inicio (s) | Período (s) | Prioridade | Tipo      |
@@ -21,13 +44,13 @@ STR - UFPEL (2016/1)
 | T6 | Controle da bomba 4        | 0          |  5          | 6          | Periódica |
 | T7 | Simulação de falhas        | 0          | 10          | 7          | Periódica |
 
-1. Simulação da planta física:
-2. Controle principal:
-3. Controle da bomba 1:
-4. Controle da bomba 2:
-5. Controle da bomba 3:
-6. Controle da bomba 4:
-7. Simulação de falhas:
+1. Simulação da planta física: simula a planta física, adicionando água na caldeira, produzindo vapor e inicializando as bombas em seus estágios de 5 segundos.
+2. Controle principal: responsável pelo controle principal da caldeira, controlando o nível de água, vapor e funcionalidade das bombas para transitar entre os estados. Caso alguma bomba deva ser acionada ou desligada é enviado uma mensagem ao reespectivo controle da bomba.
+3. Controle da bomba 1: controla a bomba 1, para aciona-la ou desliga-la.
+4. Controle da bomba 2: controla a bomba 2, para aciona-la ou desliga-la.
+5. Controle da bomba 3: controla a bomba 3, para aciona-la ou desliga-la.
+6. Controle da bomba 4: controla a bomba 4, para aciona-la ou desliga-la.
+7. Simulação de falhas: simula possíveis falhas no sistema (sensor de nível de água, sensor de produção de vapor e bombas).
 
 ### Diagrama de classes (visão geral)
 ![](diagramas/geral.png)
