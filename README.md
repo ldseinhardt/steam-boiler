@@ -12,7 +12,7 @@ STR - UFPEL (2016/1)
 ### Tarefas
 
 | #  | Nome                       | Inicio (s) | Período (s) | Prioridade | Tipo      |
-| ---|--------------------------------------------------------------------------------|
+| ---|----------------------------|------------|-------------|------------|-----------|
 | T1 | Simulação da planta física | 0          |  1          | 1          | Periódica |
 | T2 | Controle principal         | 0          |  5          | 2          | Periódica |
 | T3 | Controle da bomba 1        | 0          |  5          | 3          | Periódica |
