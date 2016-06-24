@@ -83,12 +83,13 @@ public class Main
     mainTaskControl.start();
 
     PumpTaskControl pumpTaskControls[] = new PumpTaskControl[this.steamBoiler.getNumberOfPumps()];
+    int i = 0;
     for (Pump pump : this.steamBoiler.getPumps()) {
       PumpTaskControl pumpTaskControl = pumpTaskControls[pump.getId() - 1];
       pumpTaskControl = new PumpTaskControl(
         pump,
         pumpScheduleQueue,
-        new PriorityParameters(3),
+        new PriorityParameters(3 + i),
         new PeriodicParameters(
           null,
           new RelativeTime(5000, 0),
@@ -101,12 +102,13 @@ public class Main
       System.out.println("");
       System.out.println(" * inicializando controle da bomba" + pump.getId() + " ...");
       pumpTaskControl.start();
+      i++;
     }
 
     FailTask failTask = new FailTask(
       this.steamBoiler,
       bug,
-      new PriorityParameters(4),
+      new PriorityParameters(i),
       new PeriodicParameters(
         null,
         new RelativeTime(10000, 0),

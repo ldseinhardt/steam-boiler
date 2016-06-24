@@ -9,6 +9,35 @@ STR - UFPEL (2016/1)
 
 ## Trabalho
 
+### Tarefas
+
+| #  | Nome                       | Inicio (s) | Período (s) | Prioridade | Tipo      |
+| ---|--------------------------------------------------------------------------------|
+| T1 | Simulação da planta física | 0          |  1          | 1          | Periódica |
+| T2 | Controle principal         | 0          |  5          | 2          | Periódica |
+| T3 | Controle da bomba 1        | 0          |  5          | 3          | Periódica |
+| T4 | Controle da bomba 2        | 0          |  5          | 4          | Periódica |
+| T5 | Controle da bomba 3        | 0          |  5          | 5          | Periódica |
+| T6 | Controle da bomba 4        | 0          |  5          | 6          | Periódica |
+| T7 | Simulação de falhas        | 0          | 10          | 7          | Periódica |
+
+1. Simulação da planta física:
+2. Controle principal:
+3. Controle da bomba 1:
+4. Controle da bomba 2:
+5. Controle da bomba 3:
+6. Controle da bomba 4:
+7. Simulação de falhas:
+
+### Diagrama de classes (visão geral)
+![](diagramas/geral.png)
+
+### Diagrama de classes (visão objetos e sensores)
+![](diagramas/objetos_e_sensores.png)
+
+### Diagrama de classes (visão tarefas)
+![](diagramas/tarefas.png)
+
 Implementação de RTSJ utilizada: Aicas - JamaicaVM v8 (https://www.aicas.com/cms/en/JamaicaVM)
 
 ## Anotações
