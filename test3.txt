@@ -1,0 +1,2024 @@
+SteamBoilerCtrl: configuração custom
+ * Probabilidade de erros: 1.0
+ * Capacidade da água da caldeira: 100.0 litros
+ * Produção de vapor da caldeira: 1.5 litros/segundo
+ * Vazão de água das bombas: 0.75 litros/segundo
+
+
+ * inicializando caldeira ...
+ - bomba1 ligada.
+ - bomba2 ligada.
+ - bomba3 ligada.
+ - bomba4 ligada.
+
+ - fogo ligado.
+
+ * inicializando controle principal ...
+
+ * inicializando controle da bomba1 ...
+
+ * inicializando controle da bomba2 ...
+
+ * inicializando controle da bomba3 ...
+
+ * inicializando controle da bomba4 ...
+
+ - [Planta física]:
+     * aguardando inicialização da bomba1 (1s) ...
+     * aguardando inicialização da bomba2 (1s) ...
+     * aguardando inicialização da bomba3 (1s) ...
+     * aguardando inicialização da bomba4 (1s) ...
+     * modo: INITIALIZATION
+     * nível: 0.0L = 0%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba1 (2s) ...
+     * aguardando inicialização da bomba2 (2s) ...
+     * aguardando inicialização da bomba3 (2s) ...
+     * aguardando inicialização da bomba4 (2s) ...
+     * modo: INITIALIZATION
+     * nível: 0.0L = 0%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba1 (3s) ...
+     * aguardando inicialização da bomba2 (3s) ...
+     * aguardando inicialização da bomba3 (3s) ...
+     * aguardando inicialização da bomba4 (3s) ...
+     * modo: INITIALIZATION
+     * nível: 0.0L = 0%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba1 (4s) ...
+     * aguardando inicialização da bomba2 (4s) ...
+     * aguardando inicialização da bomba3 (4s) ...
+     * aguardando inicialização da bomba4 (4s) ...
+     * modo: INITIALIZATION
+     * nível: 0.0L = 0%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba1 (5s) ...
+     * aguardando inicialização da bomba2 (5s) ...
+     * aguardando inicialização da bomba3 (5s) ...
+     * aguardando inicialização da bomba4 (5s) ...
+     * modo: INITIALIZATION
+     * nível: 0.0L = 0%
+
+ - [Controle principal]:
+     * Medição de água: 0.0 -> 0.0
+     * continuar no modo INITIALIZATION.
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 1.5L = 1%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 3.0L = 3%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 4.5L = 4%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 6.0L = 6%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 7.5L = 7%
+
+ - [Controle principal]:
+     * Medição de água: 0.0 -> 7.5
+     * continuar no modo INITIALIZATION.
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 2 mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 9.0L = 9%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 10.5L = 10%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 12.0L = 12%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 13.5L = 13%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 15.0L = 15%
+
+ - [Controle principal]:
+     * Medição de água: 7.5 -> 15.0
+     * continuar no modo INITIALIZATION.
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 16.5L = 16%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 18.0L = 18%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 19.5L = 19%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 21.0L = 21%
+
+ - [Planta física]:
+     * modo: INITIALIZATION
+     * nível: 22.5L = 22%
+
+ - [Controle principal]:
+     * Medição de água: 15.0 -> 22.5
+     * passando do modo de INITIALIZATION para o modo NORMAL.
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 4 mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 24.0L = 24%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 25.5L = 25%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 27.0L = 27%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 28.5L = 28%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 30.0
+     * continuar no modo NORMAL (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * desligada.
+
+ - [Controle da bomba4]:
+     * desligada.
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Controle principal]:
+     * Medição de água: 30.0 -> 30.0
+     * continuar no modo NORMAL (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * parada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 1 mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Controle principal]:
+     * Medição de água: 30.0 -> 30.0
+     * continuar no modo NORMAL (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * parada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 30.0L = 30%
+
+ - [Controle principal]:
+     * Medição de água: 30.0 -> 30.0
+     * continuar no modo NORMAL (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * parada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 2 parou de funcionar. : (
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 29.25L = 29%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 28.5L = 28%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 27.75L = 27%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 27.0L = 27%
+
+ - [Planta física]:
+     * modo: NORMAL
+     * nível: 26.25L = 26%
+
+ - [Controle principal]:
+     * Medição de água: 30.0 -> 26.25
+     * bomba(s) com falha(s): 1, passando do modo NORMAL para o modo DEGRADED.
+     * continuar no modo NORMAL (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * inicializada ...
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * aguardando inicialização da bomba3 (1s) ...
+     * modo: DEGRADED
+     * nível: 25.5L = 25%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba3 (2s) ...
+     * modo: DEGRADED
+     * nível: 24.75L = 24%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba3 (3s) ...
+     * modo: DEGRADED
+     * nível: 24.0L = 24%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba3 (4s) ...
+     * modo: DEGRADED
+     * nível: 23.25L = 23%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba3 (5s) ...
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Controle principal]:
+     * Medição de água: 26.25 -> 22.5
+     * continuar no modo DEGRADED (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * sensor de produção de vapor mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 22.5
+     * continuar no modo DEGRADED (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 22.5
+     * continuar no modo DEGRADED (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água parou de funcionar. : (
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 22.5L = 22%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.007514475259928877
+     * Correção na medição de água: 0.007514475259928877 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 22.5L = 22%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 22.5L = 22%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.7670710229904238
+     * Correção na medição de água: 0.7670710229904238 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 2 voltou a funcionar. : )
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 23.25L = 23%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 24.0L = 24%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 24.75L = 24%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 25.5L = 25%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 26.25L = 26%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.8886081291703746
+     * Correção na medição de água: 0.8886081291703746 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 27.0L = 27%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 27.75L = 27%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 28.5L = 28%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 29.25L = 29%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 30.0L = 30%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.5217966732433387
+     * Correção na medição de água: 0.5217966732433387 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 3 mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 30.75L = 30%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 31.5L = 31%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 32.25L = 32%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 33.0L = 33%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 33.75L = 33%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.9304647852181055
+     * Correção na medição de água: 0.9304647852181055 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 34.5L = 34%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 35.25L = 35%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 36.0L = 36%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 36.75L = 36%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 37.5L = 37%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.520934305439198
+     * Correção na medição de água: 0.520934305439198 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 38.25L = 38%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 39.0L = 39%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 39.75L = 39%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 40.5L = 40%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 41.25L = 41%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.7986820071646628
+     * Correção na medição de água: 0.7986820071646628 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 42.0L = 42%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 42.75L = 42%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 43.5L = 43%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 44.25L = 44%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.10403466454686194
+     * Correção na medição de água: 0.10403466454686194 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 4 mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.75L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 46.5L = 46%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 47.25L = 47%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 48.0L = 48%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 48.75L = 48%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.4327842800007532
+     * Correção na medição de água: 0.4327842800007532 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 49.5L = 49%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 50.25L = 50%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 51.0L = 51%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 51.75L = 51%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.16662399950839213
+     * Correção na medição de água: 0.16662399950839213 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/funcional.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 3 parou de funcionar. : (
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.9282953501824373
+     * Correção na medição de água: 0.9282953501824373 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.06887886291570833
+     * Correção na medição de água: 0.06887886291570833 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.6376705546157877
+     * Correção na medição de água: 0.6376705546157877 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.27427695817495745
+     * Correção na medição de água: 0.27427695817495745 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.8757367545989496
+     * Correção na medição de água: 0.8757367545989496 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.9701761512172051
+     * Correção na medição de água: 0.9701761512172051 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.18281197876358823
+     * Correção na medição de água: 0.18281197876358823 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.3736177815561501
+     * Correção na medição de água: 0.3736177815561501 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.9292013803584823
+     * Correção na medição de água: 0.9292013803584823 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.773294963352166
+     * Correção na medição de água: 0.773294963352166 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * parada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 2 parou de funcionar. : (
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 51.75L = 51%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 51.0L = 51%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 50.25L = 50%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 49.5L = 49%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 48.75L = 48%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.5181733059936287
+     * Correção na medição de água: 0.5181733059936287 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * inicializada ...
+
+ - [Planta física]:
+     * aguardando inicialização da bomba4 (1s) ...
+     * modo: RESCUE
+     * nível: 48.0L = 48%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba4 (2s) ...
+     * modo: RESCUE
+     * nível: 47.25L = 47%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba4 (3s) ...
+     * modo: RESCUE
+     * nível: 46.5L = 46%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba4 (4s) ...
+     * modo: RESCUE
+     * nível: 45.75L = 45%
+
+ - [Planta física]:
+     * aguardando inicialização da bomba4 (5s) ...
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.9902681025110348
+     * Correção na medição de água: 0.9902681025110348 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 1 mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.768818713725212
+     * Correção na medição de água: 0.768818713725212 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.1964678435360716
+     * Correção na medição de água: 0.1964678435360716 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.5215198580264442
+     * Correção na medição de água: 0.5215198580264442 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.4552466013282005
+     * Correção na medição de água: 0.4552466013282005 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * sensor de produção de vapor parou de funcionar. : (
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.7213582248487649
+     * Correção na medição de água: 0.7213582248487649 -> 22.5
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.9392924491577703
+     * Correção na medição de água: 0.9392924491577703 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * sensor de produção de vapor mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.3910614463466625
+     * Correção na medição de água: 0.3910614463466625 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.23830017986413943
+     * Correção na medição de água: 0.23830017986413943 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 1 mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.0255297464857267
+     * Correção na medição de água: 0.0255297464857267 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.1452232173094984
+     * Correção na medição de água: 0.1452232173094984 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * sensor de produção de vapor voltou a funcionar. : )
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.12322967041125332
+     * Correção na medição de água: 0.12322967041125332 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.6621527696815986
+     * Correção na medição de água: 0.6621527696815986 -> 22.5
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * sensor de produção de vapor parou de funcionar. : (
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: RESCUE
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.24255192029001593
+     * Correção na medição de água: 0.24255192029001593 -> 22.5
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.0L = 45%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.004456279634225013
+     * Correção na medição de água: 0.004456279634225013 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 2, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/com problema.
+
+ - [Controle da bomba3]:
+     * ligada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * bomba 2 voltou a funcionar. : )
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 45.75L = 45%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 46.5L = 46%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 47.25L = 47%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 48.0L = 48%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 48.75L = 48%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.13848568927258376
+     * Correção na medição de água: 0.13848568927258376 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * bomba(s) com falha(s): 1, passando do modo EMERGENCY_STOP para o modo DEGRADED.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * desligada.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 49.5L = 49%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 50.25L = 50%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 51.0L = 51%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 51.75L = 51%
+
+ - [Planta física]:
+     * modo: DEGRADED
+     * nível: 52.5L = 52%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.11745323540527297
+     * Correção na medição de água: 0.11745323540527297 -> 22.5
+     * passando do modo DEGRADED para o modo RESCUE.
+     * risco de explosão, passando do modo RESCUE para o modo EMERGENCY_STOP.
+     * continuar no modo RESCUE (manter nível) (operar com as bombas necessárias).
+
+ - [Controle da bomba1]:
+     * ligada/funcional.
+
+ - [Controle da bomba2]:
+     * ligada/funcional.
+
+ - [Controle da bomba3]:
+     * parada/com problema.
+
+ - [Controle da bomba4]:
+     * ligada/funcional.
+
+ - [Simulação de falha]:
+     * sensor do nível de água mantem-se no mesmo estado de funcionalidade.
+
+ - [Planta física]:
+     * modo: EMERGENCY_STOP
+     * nível: 53.25L = 53%
+
+ - [Planta física]:
+     * modo: EMERGENCY_STOP
+     * nível: 54.0L = 54%
+
+ - [Planta física]:
+     * modo: EMERGENCY_STOP
+     * nível: 54.75L = 54%
+
+ - [Planta física]:
+     * modo: EMERGENCY_STOP
+     * nível: 55.5L = 55%
+
+ - [Planta física]:
+     * modo: EMERGENCY_STOP
+     * nível: 56.25L = 56%
+
+ - [Controle principal]:
+     * Medição de água: 22.5 -> 0.029671278457808592
+     * Correção na medição de água: 0.029671278457808592 -> 22.5
+     * parada de emergência.
+     * caldeira desligada.
+     * bombas desligadas.
